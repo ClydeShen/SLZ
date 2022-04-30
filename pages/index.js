@@ -2,7 +2,7 @@ import { Container, Paper, Typography } from "@mui/material";
 const Home = () => {
   return (
     <Container maxWidth="lg">
-      <Typography variant="h1">Welcome</Typography>
+      <Typography variant="h1">Welcome!!</Typography>
     </Container>
   );
 };
