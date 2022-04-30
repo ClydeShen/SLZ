@@ -42,5 +42,5 @@ const App = (props) => {
     </CacheProvider>
   );
 };
-
+App.displayName="App"
 export default App;
