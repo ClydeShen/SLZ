@@ -1,5 +1,37 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Setup project
+
+1. `npx create-next-app [folderName]` to setup project folder
+2. `.npmrc` to restrict npm version `.nvmrc` to restrict node version
+
+```
+default -> 12.16.0 (-> v12.16.0)
+node -> stable (-> v15.4.0) (default)
+stable -> 15.4 (-> v15.4.0) (default)
+iojs -> N/A (default)
+unstable -> N/A (default)
+lts/* -> lts/fermium (-> N/A)
+lts/argon -> v4.9.1 (-> N/A)
+lts/boron -> v6.17.1 (-> N/A)
+lts/carbon -> v8.17.0 (-> N/A)
+lts/dubnium -> v10.23.0 (-> N/A)
+lts/erbium -> v12.20.0 (-> N/A)
+lts/fermium -> v14.15.1 (-> N/A)
+```
+
+3. add ESLint and Prettier
+
+4. add Husky
+
+```
+npm i --save-dev husky
+npx husky install
+npx husky add .husky/pre-commit "npm run lint"
+npx husky add .husky/pre-push "npm run build"
+
+```
+
 ## Getting Started
 
 First, run the development server:
@@ -9,14 +41,6 @@ npm run dev
 # or
 yarn dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More
 
