@@ -3,6 +3,7 @@
   "globals": {
     "React": "readonly"
   },
+  "plugins": ["import"],
   "rules": {
     "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }]
   }
