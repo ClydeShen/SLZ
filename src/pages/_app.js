@@ -1,6 +1,15 @@
 import { CacheProvider } from '@emotion/react'
+import { AuthConsumer, AuthProvider } from 'hooks/useAuth'
+import { PreferencesProvider } from 'hooks/usePreferences'
+import Router from 'next/router'
+import nProgress from 'nprogress'
 import React from 'react'
 import { createEmotionCache } from 'utils/create-emotion-cache'
+import SlashScreen from '../components/SplashScreen'
+
+Router.events.on('routeChangeStart', nProgress.start)
+Router.events.on('routeChangeError', nProgress.done)
+Router.events.on('routeChangeComplete', nProgress.done)
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -9,7 +18,19 @@ const App = (props) => {
   const getLayout = Component.getLayout ?? ((page) => page)
   return (
     <CacheProvider value={emotionCache}>
-      {getLayout(<Component {...pageProps} />)}
+      <AuthProvider>
+        <PreferencesProvider>
+          <AuthConsumer>
+            {(auth) =>
+              !auth.isInitialized ? (
+                <SlashScreen />
+              ) : (
+                getLayout(<Component {...pageProps} />)
+              )
+            }
+          </AuthConsumer>
+        </PreferencesProvider>
+      </AuthProvider>
     </CacheProvider>
   )
 }
