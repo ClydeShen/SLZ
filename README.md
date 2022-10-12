@@ -41,7 +41,9 @@ add to pre-commit should solve 'not find path on source tree'
 
 to solve error on windows
 
-` "resolveSourceMapLocation": ["${workspaceFolder}/**", "!**/node_modules/**"]`
+```json
+"resolveSourceMapLocation": ["${workspaceFolder}/**", "!**/node_modules/**"]
+```
 
 add to launch.json
 
