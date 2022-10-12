@@ -37,6 +37,14 @@ npx husky add .husky/pre-push "npm run build"
 
 add to pre-commit should solve 'not find path on source tree'
 
+5. setup debugger on vscode
+
+to solve error on windows
+
+` "resolveSourceMapLocation": ["${workspaceFolder}/**", "!**/node_modules/**"]`
+
+add to launch.json
+
 ## Getting Started
 
 First, run the development server:
