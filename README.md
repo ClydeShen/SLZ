@@ -31,6 +31,12 @@ npx husky add .husky/pre-commit "npm run lint"
 npx husky add .husky/pre-push "npm run build"
 ```
 
+**For SourceTree**
+
+`export PATH=/usr/local/bin:$PATH`
+
+add to pre-commit should solve 'not find path on source tree'
+
 ## Getting Started
 
 First, run the development server:
