@@ -22,14 +22,13 @@ lts/fermium -> v14.15.1 (-> N/A)
 
 3. add ESLint and Prettier
 
-4. add Husky
+4. add implement Husky
 
 ```
 npm i --save-dev husky
 npx husky install
 npx husky add .husky/pre-commit "npm run lint"
 npx husky add .husky/pre-push "npm run build"
-
 ```
 
 ## Getting Started
