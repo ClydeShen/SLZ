@@ -10,62 +10,62 @@ const neutral = {
   700: '#374151',
   800: '#1F2937',
   900: '#111827'
-};
+}
 
 const background = {
   default: '#F9FAFC',
   paper: '#FFFFFF'
-};
+}
 
-const divider = '#E6E8F0';
+const divider = '#E6E8F0'
 
 const primary = {
   main: '#10214E',
   light: '#586483',
   dark: '#070F23',
   contrastText: '#FFFFFF'
-};
+}
 
 const secondary = {
   main: '#4D61E0',
   light: '#99A5ED',
   dark: '#011DD2',
   contrastText: '#FFFFFF'
-};
+}
 
 const success = {
   main: '#1D8960',
   light: '#2CCE90',
   dark: '#166748',
   contrastText: '#FFFFFF'
-};
+}
 
 const info = {
   main: '#2196F3',
   light: '#64B6F7',
   dark: '#0B79D0',
   contrastText: '#FFFFFF'
-};
+}
 
 const warning = {
   main: '#FFB020',
   light: '#FFBF4C',
   dark: '#B27B16',
   contrastText: '#FFFFFF'
-};
+}
 
 const error = {
   main: '#DD4F54',
   light: '#F88A8E',
   dark: '#933538',
   contrastText: '#FFFFFF'
-};
+}
 
 const text = {
   primary: '#121828',
   secondary: '#65748B',
   disabled: 'rgba(55, 65, 81, 0.48)'
-};
+}
 
 export const lightThemeOptions = {
   components: {
@@ -206,4 +206,4 @@ export const lightThemeOptions = {
     '0px 25px 50px rgba(100, 116, 139, 0.25)',
     '0px 25px 50px rgba(100, 116, 139, 0.25)'
   ]
-};
+}

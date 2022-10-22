@@ -28,7 +28,7 @@ export const baseThemeOptions = {
       styleOverrides: {
         root: {
           textTransform: 'none',
-          // fontSize: '1rem',
+          fontSize: '1rem',
           lineHeight: 1.5
         },
         sizeSmall: {

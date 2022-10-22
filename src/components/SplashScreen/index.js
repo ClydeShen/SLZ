@@ -1,7 +1,7 @@
 import { Box, Container, LinearProgress } from '@mui/material'
 import React from 'react'
 
-const SlashScreen = () => (
+const SlashScreen = (props) => (
   <Box
     sx={{
       alignItems: 'center',
