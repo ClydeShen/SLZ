@@ -1,4 +1,4 @@
-import React, { useContext, useInsertionEffect, useReducer } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
 
 const AuthContext = React.createContext()
 
@@ -53,7 +53,7 @@ export const AuthProvider = (props) => {
     return verifyUser(null, 'LOGOUT')
   }
 
-  useInsertionEffect(() => {
+  useEffect(() => {
     const initialize = () => {
       verifyUser(null, 'INITIALIZE')
     }
