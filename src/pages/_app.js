@@ -6,6 +6,7 @@ import nProgress from 'nprogress'
 import React from 'react'
 import { createEmotionCache } from 'utils/create-emotion-cache'
 import SlashScreen from '../components/SplashScreen'
+import { Analytics } from '@vercel/analytics/react'
 
 Router.events.on('routeChangeStart', nProgress.start)
 Router.events.on('routeChangeError', nProgress.done)
@@ -17,21 +18,24 @@ const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? ((page) => page)
   return (
-    <CacheProvider value={emotionCache}>
-      <AuthProvider>
-        <PreferencesProvider>
-          <AuthConsumer>
-            {(auth) =>
-              !auth.isInitialized ? (
-                <SlashScreen />
-              ) : (
-                getLayout(<Component {...pageProps} />)
-              )
-            }
-          </AuthConsumer>
-        </PreferencesProvider>
-      </AuthProvider>
-    </CacheProvider>
+    <>
+      <CacheProvider value={emotionCache}>
+        <AuthProvider>
+          <PreferencesProvider>
+            <AuthConsumer>
+              {(auth) =>
+                !auth.isInitialized ? (
+                  <SlashScreen />
+                ) : (
+                  getLayout(<Component {...pageProps} />)
+                )
+              }
+            </AuthConsumer>
+          </PreferencesProvider>
+        </AuthProvider>
+      </CacheProvider>
+      <Analytics />
+    </>
   )
 }
 

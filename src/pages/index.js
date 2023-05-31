@@ -4,7 +4,7 @@ import React, { memo } from 'react'
 const Home = memo(() => {
   return (
     <Container>
-      <Typography variant='h1'>Welcome!</Typography>
+      <Typography variant="h1">Welcome!</Typography>
     </Container>
   )
 })
