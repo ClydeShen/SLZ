@@ -1,6 +1,6 @@
 // import { CacheProvider } from '@emotion/react'
 import { AuthConsumer } from 'hooks/useAuth'
-// import { PreferencesProvider } from 'hooks/usePreferences'
+import { PreferencesProvider } from 'hooks/usePreferences'
 import Router from 'next/router'
 import nProgress from 'nprogress'
 import React, { useState } from 'react'
@@ -25,7 +25,9 @@ const AlertProvider = dynamic(() =>
 const AuthProvider = dynamic(() =>
   import('hooks/useAuth').then((mod) => mod.AuthProvider)
 )
-const PreferencesProvider = dynamic(() => import('hooks/usePreferences'))
+// const PreferencesProvider = dynamic(() => import('hooks/usePreferences'), {
+//   ssr: false
+// })
 const SlashScreen = dynamic(() => import('../components/SplashScreen'))
 const Analytics = dynamic(() =>
   import('@vercel/analytics/react').then((mod) => mod.Analytics)
