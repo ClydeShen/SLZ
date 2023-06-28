@@ -1,5 +1,5 @@
 import axios from 'axios'
-export const ROOT = process.env.NEXT_PUBLIC_API_ROOT
+export const ROOT = process.env.NEXT_PUBLIC_API_URL
 
 const axiosInstance = axios.create({
   baseURL: ROOT
@@ -33,6 +33,8 @@ export const POST = (path, config) => request(path, 'post', config)
 export const PATH = {
   CORN: '/cron',
   AUTH: {
+    VERIFY: '/auth/verify',
+    SESSION: '/auth',
     USER: '/auth/user'
   }
 }

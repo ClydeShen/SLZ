@@ -1,6 +1,8 @@
 import React, { memo } from 'react'
-import AuthLayout from 'layout/AuthLayout'
-import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
+const AuthLayout = dynamic(() => import('layout/AuthLayout'))
+const Link = dynamic(() => import('next/link'))
 
 const YardPage = memo((props) => {
   return (

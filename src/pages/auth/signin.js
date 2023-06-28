@@ -1,8 +1,10 @@
-import { Container } from '@mui/material'
-import Page from 'components/Page'
+import Container from '@mui/material/Container'
 import React, { memo } from 'react'
-import GuestLayout from 'layout/GuestLayout'
-import SigninForm from 'components/Signin'
+import dynamic from 'next/dynamic'
+
+const SigninForm = dynamic(() => import('components/Signin'))
+const GuestLayout = dynamic(() => import('layout/GuestLayout'))
+const Page = dynamic(() => import('components/Page'))
 
 const Signin = memo((props) => {
   return (

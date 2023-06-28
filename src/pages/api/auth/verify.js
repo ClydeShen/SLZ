@@ -3,7 +3,6 @@ import createSuperbaseServerClient from 'utils/lib/supabase/server'
 const handler = async (req, res) => {
   const { code, from = '/yard' } = req.query
   console.log('api/auth/verify.js: from', from)
-  debugger
   if (code) {
     const supabaseClient = createSuperbaseServerClient(req, res)
     await supabaseClient.auth.exchangeCodeForSession(String(code))
