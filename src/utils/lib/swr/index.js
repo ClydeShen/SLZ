@@ -1,6 +1,6 @@
 import axios from 'axios'
 export const ROOT = process.env.NEXT_PUBLIC_API_URL
-
+console.log('ROOT', ROOT)
 const axiosInstance = axios.create({
   baseURL: ROOT
 })
