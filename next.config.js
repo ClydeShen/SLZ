@@ -28,9 +28,11 @@ module.exports = async (phase) => {
       styledComponents: true
     },
     images: {
-      domains: ['slz.vercel.app'],
-      loader: 'imgix',
-      path: 'https://slz.vercel.app/',
+      domains: [
+        'slz.vercel.app',
+        'avatars.githubusercontent.com',
+        'placehold.co'
+      ],
       minimumCacheTTL: 86400
     }
   }

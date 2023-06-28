@@ -3,10 +3,14 @@ import { AuthConsumer, AuthProvider } from 'hooks/useAuth'
 import { PreferencesProvider } from 'hooks/usePreferences'
 import Router from 'next/router'
 import nProgress from 'nprogress'
-import React from 'react'
+import React, { useState } from 'react'
 import { createEmotionCache } from 'utils/create-emotion-cache'
 import SlashScreen from '../components/SplashScreen'
 import { Analytics } from '@vercel/analytics/react'
+import { SnackbarProvider } from 'notistack'
+import { AlertProvider } from 'hooks/useAlert'
+import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import createSupabaseClient from 'utils/lib/supabase/client'
 
 Router.events.on('routeChangeStart', nProgress.start)
 Router.events.on('routeChangeError', nProgress.done)
@@ -17,22 +21,32 @@ const clientSideEmotionCache = createEmotionCache()
 const App = (props) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const getLayout = Component.getLayout ?? ((page) => page)
+  const [supabaseClient] = useState(() => createSupabaseClient())
   return (
     <>
       <CacheProvider value={emotionCache}>
-        <AuthProvider>
-          <PreferencesProvider>
-            <AuthConsumer>
-              {(auth) =>
-                !auth.isInitialized ? (
-                  <SlashScreen />
-                ) : (
-                  getLayout(<Component {...pageProps} />)
-                )
-              }
-            </AuthConsumer>
-          </PreferencesProvider>
-        </AuthProvider>
+        <SnackbarProvider dense>
+          <AlertProvider>
+            <SessionContextProvider
+              supabaseClient={supabaseClient}
+              initialSession={null}
+            >
+              <AuthProvider>
+                <PreferencesProvider>
+                  <AuthConsumer>
+                    {(auth) =>
+                      !auth.isInitialized ? (
+                        <SlashScreen />
+                      ) : (
+                        getLayout(<Component {...pageProps} />)
+                      )
+                    }
+                  </AuthConsumer>
+                </PreferencesProvider>
+              </AuthProvider>
+            </SessionContextProvider>
+          </AlertProvider>
+        </SnackbarProvider>
       </CacheProvider>
       <Analytics />
     </>
