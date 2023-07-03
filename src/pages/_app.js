@@ -1,5 +1,5 @@
-// import { CacheProvider } from '@emotion/react'
-import { AuthConsumer } from 'hooks/useAuth'
+import { CacheProvider } from '@emotion/react'
+import { AuthConsumer, AuthProvider } from 'hooks/useAuth'
 import { PreferencesProvider } from 'hooks/usePreferences'
 import Router from 'next/router'
 import nProgress from 'nprogress'
@@ -7,24 +7,24 @@ import React, { useState } from 'react'
 import { createEmotionCache } from 'utils/create-emotion-cache'
 // import SlashScreen from '../components/SplashScreen'
 // import { Analytics } from '@vercel/analytics/react'
-// import { SnackbarProvider } from 'notistack'
-// import { AlertProvider } from 'hooks/useAlert'
+import { SnackbarProvider } from 'notistack'
+import { AlertProvider } from 'hooks/useAlert'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import createSupabaseClient from 'utils/lib/supabase/client'
 import dynamic from 'next/dynamic'
 
-const CacheProvider = dynamic(() =>
-  import('@emotion/react').then((mod) => mod.CacheProvider)
-)
-const SnackbarProvider = dynamic(() =>
-  import('notistack').then((mod) => mod.SnackbarProvider)
-)
-const AlertProvider = dynamic(() =>
-  import('hooks/useAlert').then((mod) => mod.AlertProvider)
-)
-const AuthProvider = dynamic(() =>
-  import('hooks/useAuth').then((mod) => mod.AuthProvider)
-)
+// const CacheProvider = dynamic(() =>
+//   import('@emotion/react').then((mod) => mod.CacheProvider)
+// )
+// const SnackbarProvider = dynamic(() =>
+//   import('notistack').then((mod) => mod.SnackbarProvider)
+// )
+// const AlertProvider = dynamic(() =>
+//   import('hooks/useAlert').then((mod) => mod.AlertProvider)
+// )
+// const AuthProvider = dynamic(() =>
+//   import('hooks/useAuth').then((mod) => mod.AuthProvider)
+// )
 // const PreferencesProvider = dynamic(() => import('hooks/usePreferences'), {
 //   ssr: false
 // })

@@ -15,10 +15,10 @@ const useForm = (initValue, validation = ignore, options) => {
   const [error, setError] = useState('')
   const hasChange = useRef(false)
   const preValueRef = useRef(initValue)
-  const setValue = (newValue) => {
+  const setValue = useCallback((newValue) => {
     hasChange.current = true
     changeValue(newValue)
-  }
+  }, [])
   useEffect(() => {
     if (hasChange.current && value !== preValueRef.current) {
       preValueRef.current = value

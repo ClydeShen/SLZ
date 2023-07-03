@@ -79,23 +79,24 @@ export const AuthProvider = (props) => {
     }
   }, [])
 
-  const login = async (email, password) => {
+  const login = async (email, password, onSuccess) => {
     try {
       const { error } = await supabaseClient.auth.signInWithPassword({
         email,
         password
       })
       error?.message && alert.error(error?.message)
+      onSuccess()
     } catch (err) {
       console.log('error', err)
     }
   }
-  const loginWithGithub = async (from = '') => {
+  const loginWithGithub = async (next = '') => {
     try {
       await supabaseClient.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: `${getOrigin()}api/auth/verify?from=${from}`
+          redirectTo: `${getOrigin()}${next}`
         }
       })
     } catch (error) {

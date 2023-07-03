@@ -15,6 +15,20 @@ module.exports = async (phase) => {
     // the source maps will be output in the same directory as the JavaScript files.
     // Next.js will automatically serve these files when requested.
     productionBrowserSourceMaps: false,
+    modularizeImports: {
+      '@mui/material': {
+        transform: '@mui/material/{{member}}'
+      },
+      '@mui/icons-material': {
+        transform: '@mui/icons-material/{{member}}'
+      },
+      '@mui/lab': {
+        transform: '@mui/lab/{{member}}'
+      },
+      '@mui/styles': {
+        transform: '@mui/styles/{{member}}'
+      }
+    },
     webpack: (config) => {
       const newConfig = config
       newConfig.module.rules.push({
