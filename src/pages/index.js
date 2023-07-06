@@ -1,10 +1,10 @@
-import { Container, Typography, Button } from '@mui/material'
-import React, { memo } from 'react'
+import { Container, Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
+import { memo } from 'react'
 
 const Link = dynamic(() => import('next/link'))
 
-const Home = memo((props) => {
+const Home = memo(() => {
   return (
     <Container>
       <Typography variant="h1">Welcome!</Typography>

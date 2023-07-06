@@ -1,5 +1,5 @@
-import createSupabaseMiddlewareClient from 'utils/lib/supabase/middleware'
 import { NextResponse } from 'next/server'
+import createSupabaseMiddlewareClient from 'utils/lib/supabase/middleware'
 
 export const middleware = async (req) => {
   const { searchParams } = req.nextUrl
@@ -17,7 +17,6 @@ export const middleware = async (req) => {
     redirectUrl.searchParams.set('next', req.nextUrl.pathname)
     return NextResponse.redirect(redirectUrl)
   }
-  console.log('middleware.js to: ', res)
   return res
 }
 

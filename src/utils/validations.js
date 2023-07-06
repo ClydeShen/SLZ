@@ -1,20 +1,12 @@
-const ignore = () => {
-  return { isValid: true, errorMessage: '' }
+import { z } from 'zod'
+
+const SignIn = z.object({
+  email: z.string().email(),
+  password: z.string().min(6)
+})
+
+const Schema = {
+  SignIn
 }
 
-const required = (value) => {
-  if (typeof value === 'undefined' || value === '') {
-    return { isValid: false, errorMessage: 'Please fill out this field' }
-  }
-  if (value.trim?.() === '') {
-    return { isValid: false, errorMessage: 'Please fill out this field' }
-  }
-  return { isValid: true, errorMessage: '' }
-}
-
-const validations = {
-  ignore,
-  required
-}
-
-export default validations
+export default Schema

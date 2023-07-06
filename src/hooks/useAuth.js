@@ -1,9 +1,10 @@
-import React, { useCallback, useContext, useEffect, useReducer } from 'react'
-import { useRouter } from 'next/router'
-import useSWRMutation from 'swr/mutation'
-import { PATH, GET } from 'utils/lib/swr'
-import { getOrigin } from 'utils/helpers'
 import { useSessionContext } from '@supabase/auth-helpers-react'
+import { useRouter } from 'next/router'
+import React, { useContext, useEffect, useReducer } from 'react'
+import useSWRMutation from 'swr/mutation'
+import { getOrigin } from 'utils/helpers'
+import { GET, PATH } from 'utils/lib/swr'
+import Schema from 'utils/validations'
 import useAlert from './useAlert'
 
 const AuthContext = React.createContext()
@@ -59,8 +60,7 @@ export const AuthProvider = (props) => {
   const router = useRouter()
   const { data: user, trigger } = useSWRMutation(PATH.AUTH.USER, GET)
 
-  const verifyUser = useCallback(async (event, token) => {
-    console.log('verifyUser', { event, token })
+  const verifyUser = async (event, token) => {
     let user = null
     if (token) {
       const result = await trigger({ token })
@@ -77,15 +77,18 @@ export const AuthProvider = (props) => {
         router.reload()
       }, 10)
     }
-  }, [])
+  }
 
-  const login = async (email, password, onSuccess) => {
+  const login = async (signinData, onSuccess) => {
     try {
-      const { error } = await supabaseClient.auth.signInWithPassword({
-        email,
-        password
-      })
-      error?.message && alert.error(error?.message)
+      const { success, error: dataError } = Schema.SignIn.safeParse(signinData)
+      if (!success) {
+        return alert.error(dataError.message)
+      }
+      const { error } = await supabaseClient.auth.signInWithPassword(signinData)
+      if (error?.message) {
+        return alert.error(error?.message)
+      }
       onSuccess()
     } catch (err) {
       console.log('error', err)
@@ -112,7 +115,6 @@ export const AuthProvider = (props) => {
     const {
       data: { subscription }
     } = supabaseClient.auth.onAuthStateChange((event, currentSession) => {
-      console.log('Auth Subscription: ', { event, user, currentSession })
       verifyUser(event, currentSession?.access_token)
     })
     return () => {

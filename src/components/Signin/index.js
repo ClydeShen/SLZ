@@ -1,57 +1,55 @@
-import { Button, Divider, Stack, TextField } from '@mui/material'
-import React, { memo, useCallback } from 'react'
+import { Button, Stack } from '@mui/material'
 import useAuth from 'hooks/useAuth'
-import useForm from 'hooks/useForm'
+import { Field, useForm } from 'hooks/useForm'
 import { useRouter } from 'next/router'
+import { memo, useCallback } from 'react'
+import Schema from 'utils/validations'
 
 const SigninForm = memo(() => {
   const { login, loginWithGithub } = useAuth()
-  const [email, setEmail] = useForm('')
-  const [password, setPassword] = useForm('')
+  const { Form } = useForm({
+    initValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: Schema.SignIn
+  })
   const router = useRouter()
-  console.log('router', router)
   const next = router?.query?.next || '/yard'
   const isE5 = next === '/e5'
 
   const onSuccess = useCallback(() => {
     router.push(next)
   }, [next])
-  const submitHandler = async (event) => {
-    event.preventDefault()
-    await login(email, password, onSuccess)
+  const submitHandler = async (signinData) => {
+    await login(signinData, onSuccess)
   }
   const signInWithGithub = async () => {
     if (isE5) loginWithGithub(next)
   }
   return (
-    <Stack component="form" spacing={3} onSubmit={submitHandler}>
-      from:{next}
-      {isE5 ? (
-        <Button variant="outlined" onClick={signInWithGithub}>
-          Signin with Github
-        </Button>
-      ) : (
-        <>
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            focused
-          ></TextField>
-          <TextField
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            focused
-          ></TextField>
-          <Button type="submit" variant="contained">
-            Signin
+    <Form onSubmit={submitHandler}>
+      <Stack spacing={3}>
+        {isE5 ? (
+          <Button variant="outlined" onClick={signInWithGithub}>
+            Signin with Github
           </Button>
-        </>
-      )}
-    </Stack>
+        ) : (
+          <>
+            <Field label="Email" type="email" name="email" focused></Field>
+            <Field
+              label="Password"
+              type="password"
+              name="password"
+              focused
+            ></Field>
+            <Button type="submit" variant="contained">
+              Signin
+            </Button>
+          </>
+        )}
+      </Stack>
+    </Form>
   )
 })
 

@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
-import dynamic from 'next/dynamic'
+import useAuth from 'hooks/useAuth'
 import AuthLayout from 'layout/AuthLayout'
 import Link from 'next/link'
+import { memo } from 'react'
 // const AuthLayout = dynamic(() => import('layout/AuthLayout'))
 // const Link = dynamic(() => import('next/link'))
 
@@ -10,6 +10,8 @@ import Link from 'next/link'
 // 3. Period [3600 - 7200] seconds
 // 4. Authorization
 const E5 = memo((props) => {
+  const { user } = useAuth()
+  console.log('user', user)
   return (
     <div>
       <Link href={'/'}>Home</Link>

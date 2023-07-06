@@ -9,12 +9,12 @@ import {
   Stack,
   Toolbar
 } from '@mui/material'
-import React, { memo } from 'react'
 import useAuth from 'hooks/useAuth'
 import Image from 'next/image'
+import React, { memo } from 'react'
 import { imgPlaceHolder } from 'utils/constants'
 
-const AuthNavbar = memo((props) => {
+const AuthNavbar = memo(() => {
   const { logout, user } = useAuth()
   const [anchorUserMenu, setAnchorUserMenu] = React.useState(null)
 
@@ -40,18 +40,19 @@ const AuthNavbar = memo((props) => {
               <Stack> navs</Stack>
               <Stack>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar>
+                  <Avatar sx={{ width: 32, height: 32 }}>
                     <Image
                       src={user?.user_metadata?.avatar_url || imgPlaceHolder()}
                       alt={user?.user_metadata?.email || 'Unknown User'}
-                      layout="fill"
+                      width={32}
+                      height={32}
                     ></Image>
                   </Avatar>
                 </IconButton>
                 <Menu
                   anchorEl={anchorUserMenu}
                   anchorOrigin={{
-                    vertical: 'top',
+                    vertical: 'bottom',
                     horizontal: 'right'
                   }}
                   open={Boolean(anchorUserMenu)}

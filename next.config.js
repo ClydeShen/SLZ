@@ -9,7 +9,7 @@ module.exports = async (phase) => {
     reactStrictMode: true,
     swcMinify: true,
     poweredByHeader: false,
-    compress: false,
+    compress: true,
     optimizeFonts: true,
     // When the productionBrowserSourceMaps option is enabled,
     // the source maps will be output in the same directory as the JavaScript files.
@@ -27,6 +27,14 @@ module.exports = async (phase) => {
       },
       '@mui/styles': {
         transform: '@mui/styles/{{member}}'
+      }
+    },
+    compilerOptions: {
+      baseUrl: 'src/',
+      paths: {
+        '@/components/*': ['components/*'],
+        '@/utils/*': ['utils/*'],
+        '@/hooks/*': ['hooks/*']
       }
     },
     webpack: (config) => {
