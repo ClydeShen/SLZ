@@ -29,14 +29,6 @@ module.exports = async (phase) => {
         transform: '@mui/styles/{{member}}'
       }
     },
-    compilerOptions: {
-      baseUrl: 'src/',
-      paths: {
-        '@/components/*': ['components/*'],
-        '@/utils/*': ['utils/*'],
-        '@/hooks/*': ['hooks/*']
-      }
-    },
     webpack: (config) => {
       const newConfig = config
       newConfig.module.rules.push({
