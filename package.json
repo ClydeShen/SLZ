@@ -1,5 +1,5 @@
 {
-  "name": "slz-frontend",
+  "name": "@slz-frontend/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {},
@@ -7,9 +7,7 @@
   "dependencies": {},
   "devDependencies": {
     "@nx/js": "18.0.8",
+    "@nx/workspace": "18.0.8",
     "nx": "18.0.8"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+  }
 }
