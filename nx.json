@@ -10,5 +10,8 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "ZGQwOTllYjQtMmIyNC00NDBjLThhNmItMjEyYTBmYjlkOTBjfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MTRmOTE3N2MtNDA3Ny00MWFjLWFlZDgtYmJhMTZkNDA2NjQ3fHJlYWQtd3JpdGU=",
+  "affected": {
+    "defaultBase": "main"
+  }
 }
