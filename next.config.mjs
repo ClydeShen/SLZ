@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js'
 
-const nextConfigFunction = (phase, { defaultConfig }) => {
-  console.log('phase', phase, defaultConfig)
+const nextConfigFunction = (phase) => {
   const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,

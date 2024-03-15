@@ -1,7 +1,14 @@
+import { ThemeProivder } from '@/components/ThemeProvider'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  weight: ['300', '400', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--inter'
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,8 +21,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang='en' className={`${inter.variable}`}>
+      <body>
+        <AppRouterCacheProvider>
+          <ThemeProivder>{children}</ThemeProivder>
+        </AppRouterCacheProvider>
+      </body>
     </html>
   )
 }
